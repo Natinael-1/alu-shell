@@ -1,3 +1,3 @@
-#alu -shell
+#!/bin/bash
 This repository contains shell script
 
