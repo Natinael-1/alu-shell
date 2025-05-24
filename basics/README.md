@@ -1,3 +1,4 @@
-#basics
-This folder contains basics shell script
+#!/bin/bash
+This file contains a shell script
+
 
