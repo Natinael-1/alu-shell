@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# This is 7th script
+i=1
+j=1
+while [ "$j" -le 12 ]; do
+while [ "$i" -le 59 ]; do
+echo "$i"
+ech "$j"
+done
+done
