@@ -1,0 +1,2 @@
+#!/bin/bash
+echo "$water i $WATER $stir i $STIR + $bestchol o p" | dc
