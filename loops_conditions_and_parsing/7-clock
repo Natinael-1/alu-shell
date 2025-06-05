@@ -7,6 +7,6 @@ while [ "$i" -le 59 ]; do
 echo "$i"
 i=$((i+1))
 done
-echo "$j"
+echo "Hour:  $j"
 j=$((j+1))
 done
