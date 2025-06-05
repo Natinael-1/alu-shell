@@ -3,8 +3,9 @@
 i=1
 while ["$i" -le 10 ]; do
 if [ "$i" -e 9 ]; then
-echo -e "Best School\nHI"
+echo  "Best School"
+echo "HI"
 else
 echo "Best School"
+fi
 done
-
