@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This is script 12
+while IFS=":" read -r username _ uid _ _ _ home _; do
+  echo "Username: $username | UID: $uid | Home: $home"
+done < /etc/passwd
