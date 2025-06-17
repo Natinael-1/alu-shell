@@ -1,19 +1,20 @@
 #!/usr/bin/env bash
- # This is script 6th
+# This is script 6th
 for pid in /proc/[0-9]*; do
     cmdline_file="$pid/cmdline"
 
+    # Check if the file exists and is readable
     if [[ -r "$cmdline_file" ]]; then
-        # Read command line, make sure it's the exact script (and not grep, etc)
+        # Read the command line arguments (replace nulls with spaces)
         cmd=$(tr '\0' ' ' < "$cmdline_file")
 
-        # Match ONLY if the command is exactly "./4-to_infinity_and_beyond"
+        # Check if the command matches exactly the target script
         if [[ "$cmd" == "./4-to_infinity_and_beyond" ]]; then
-            # Get the controlling terminal
+            # Find the TTY (controlling terminal) of the process
             tty=$(readlink "$pid/fd/0" 2>/dev/null)
 
+            # If TTY found, send Ctrl+C (ASCII 3 = SIGINT)
             if [[ -n "$tty" ]]; then
-                # Send Ctrl+C
                 echo -ne '\x03' > "$tty"
             fi
         fi
