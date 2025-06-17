@@ -1,21 +1,20 @@
 #!/usr/bin/env bash
  # This is script 6th
- # Loop through running processes in /proc
+#  Loop through running processes in /proc
 for pid in /proc/[0-9]*; do
     cmdline_file="$pid/cmdline"
 
-    # Check if cmdline file is readable
     if [[ -r "$cmdline_file" ]]; then
-        # Get the command line (null-separated -> replace with space)
+        # Read command line, make sure it's the exact script (and not grep, etc)
         cmd=$(tr '\0' ' ' < "$cmdline_file")
 
-        # Check if this is the script we want to stop
-        if echo "$cmd" | grep -qE "./4-to_infinity_and_beyond$"; then
-            # Get the terminal of the process
+        # Match ONLY if the command is exactly "./4-to_infinity_and_beyond"
+        if [[ "$cmd" == "./4-to_infinity_and_beyond" ]]; then
+            # Get the controlling terminal
             tty=$(readlink "$pid/fd/0" 2>/dev/null)
 
-            # If we found a tty, send Ctrl+C (SIGINT)
             if [[ -n "$tty" ]]; then
+                # Send Ctrl+C
                 echo -ne '\x03' > "$tty"
             fi
         fi
