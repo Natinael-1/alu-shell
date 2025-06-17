@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
  # This is script 6th
-#  Loop through running processes in /proc
 for pid in /proc/[0-9]*; do
     cmdline_file="$pid/cmdline"
 
