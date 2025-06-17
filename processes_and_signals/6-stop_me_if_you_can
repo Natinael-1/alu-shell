@@ -1,13 +1,20 @@
 #!/usr/bin/env bash
-# This is script 6th
+ # This is script 6th
+ # Loop through running processes in /proc
 for pid in /proc/[0-9]*; do
-    cmd_path="$pid/cmdline"
+    cmdline_file="$pid/cmdline"
 
-    if [[ -r "$cmd_path" ]]; then
-        cmd=$(tr '\0' ' ' < "$cmd_path")
-        if echo "$cmd" | grep -q "./4-to_infinity_and_beyond"; then
+    # Check if cmdline file is readable
+    if [[ -r "$cmdline_file" ]]; then
+        # Get the command line (null-separated -> replace with space)
+        cmd=$(tr '\0' ' ' < "$cmdline_file")
+
+        # Check if this is the script we want to stop
+        if echo "$cmd" | grep -qE "./4-to_infinity_and_beyond$"; then
+            # Get the terminal of the process
             tty=$(readlink "$pid/fd/0" 2>/dev/null)
 
+            # If we found a tty, send Ctrl+C (SIGINT)
             if [[ -n "$tty" ]]; then
                 echo -ne '\x03' > "$tty"
             fi
