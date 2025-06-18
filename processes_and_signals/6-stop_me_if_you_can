@@ -1,22 +1,2 @@
-#!/usr/bin/env bash
-# This is script 6th
-for pid in /proc/[0-9]*; do
-    cmdline_file="$pid/cmdline"
-
-    # Check if the file exists and is readable
-    if [[ -r "$cmdline_file" ]]; then
-        # Read the command line arguments (replace nulls with spaces)
-        cmd=$(tr '\0' ' ' < "$cmdline_file")
-
-        # Check if the command matches exactly the target script
-        if [[ "$cmd" == "./4-to_infinity_and_beyond" ]]; then
-            # Find the TTY (controlling terminal) of the process
-            tty=$(readlink "$pid/fd/0" 2>/dev/null)
-
-            # If TTY found, send Ctrl+C (ASCII 3 = SIGINT)
-            if [[ -n "$tty" ]]; then
-                echo -ne '\x03' > "$tty"
-            fi
-        fi
-    fi
-done
+#!/bin/bash
+find . -name "*.gif" -type f -printf "%f\n" | rev | cut -d. -f2- | rev | LC_ALL=C sort -f
