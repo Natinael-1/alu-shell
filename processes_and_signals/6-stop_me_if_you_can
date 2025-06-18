@@ -1,2 +1,12 @@
-#!/bin/bash
-find . -name "*.gif" -type f -printf "%f\n" | rev | cut -d. -f2- | rev | LC_ALL=C sort -f
+#!/usr/bin/env bash
+#bash script that kills 4-to_infinity_and_beyond process easily
+pkill -f to_infinity_and_beyond
+#!/usr/bin/env bash
+#bash script that displays 'To infinity and beyond', if kill attempt 'I am invincible!!!'
+trap 'echo "I am invincible!!!"' SIGTERM
+counter=2
+while [ $counter -gt 0 ]; do
+    echo "To infinity and beyond"
+    sleep 2
+done
+
