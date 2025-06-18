@@ -1,2 +1,2 @@
 #!/bin/bash
-expr $(echo $WATER | tr 'watre' '01234') + $(echo $STIR | tr 'stir' '0123') | xargs -I {} dc -e "8 o {} p" | tr '01234567' 'bestchol'
+expr $WATER + $STIR | tr '012345678' 'BEESTCHOL'
