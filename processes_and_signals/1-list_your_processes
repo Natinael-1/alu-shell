@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 # bash script that displays all running process
-ps -e -o user=USER,start=STARTED,cmd=CMD --forest
+ps -eo user,lstart,cmd --sort=lstart --no-headers | awk '{
+    user=$1; started=$4":"$5":"$6;
+    cmd="";
+    for (i=8; i<=NF; i++) cmd=cmd $i " ";
+    printf "%-8s %-10s %s\n", user, started, cmd
+}'
+
