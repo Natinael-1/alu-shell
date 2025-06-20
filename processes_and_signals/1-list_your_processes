@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # Script to display a list of currently running processes.
 # Requirements:
 # - Show all processes for all users.
