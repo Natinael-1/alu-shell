@@ -1,37 +1,3 @@
 #!/usr/bin/env bash
-# Script to display a list of currently running processes.
-# Requirements:
-# - Show all processes for all users.
-# - Include processes without a TTY.
-# - Display in a user-oriented format with specific columns.
-# - Show process hierarchy using ASCII art.
-
-echo "--- Currently Running Processes (User-Oriented Hierarchy) ---"
-echo "This might take a moment, please be patient..."
-echo ""
-
-# 'ps' command options explained:
-# a : Displays all processes, including those of other users.
-# u : Displays user-oriented format, which includes:
-#     USER (User who owns the process)
-#     PID (Process ID)
-#     %CPU (CPU utilization of the process)
-#     %MEM (Memory utilization of the process)
-#     VSZ (Virtual Memory Size in KiB)
-#     RSS (Resident Set Size, i.e., physical memory used, in KiB)
-#     TTY (Controlling TTY, '?' if none)
-#     STAT (Process state: R=running, S=sleeping, Z=zombie, I=idle, D=uninterruptible sleep,
-#           < = high-priority, N = low-priority, L = locked pages in memory,
-#           s = session leader, l = multi-threaded, + = foreground process group)
-#     START (Time process started)
-#     TIME (Cumulative CPU time)
-#     COMMAND (The command that started the process, with arguments)
-# x : Includes processes not attached to any terminal (non-TTY processes).
-# f : "Forest" format, which attempts to draw ASCII art process tree, showing hierarchy.
-
-ps auxf
-
-echo ""
-echo "--- End of Process List ---"
-echo "Columns: USER, PID, %CPU, %MEM, VSZ, RSS, TTY, STAT, START, TIME, COMMAND"
-echo "The leading spaces/underscores in the COMMAND column indicate the process hierarchy."
+# script 1
+ps auxf --forest
